@@ -1,0 +1,45 @@
+body {
+    font-family: Calibri, Verdana, Arial, 'Microsoft YaHei UI', sans-serif;
+    font-size: 14px;
+}
+
+select, input, textarea {
+    font-family: Calibri, Verdana, Arial, 'Microsoft YaHei UI', sans-serif;
+    font-size: 14px !important;
+}
+
+table th {
+    white-space: nowrap;
+}
+
+.not-set {
+    display: none;
+}
+
+.no-display {
+    display: none;
+}
+
+.col-num {
+    text-align: right;
+}
+
+.table select, .table input {
+    padding:3px;
+
+}
+
+.custom-info {
+    margin-bottom: 20px;
+}
+
+.tab-content {
+    padding: 15px 0;
+}
+
+.grid-view a {
+    display: inline-block;
+    margin-right: 2px;
+}
+
+/* --- Responsive ---*/

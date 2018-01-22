@@ -1,0 +1,9 @@
+.size {
+    width: 110px;
+    white-space: nowrap;
+}
+
+.field-frameform-springhinge,
+.field-frameform-clipon {
+    text-align: center;
+}

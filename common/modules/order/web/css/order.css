@@ -1,0 +1,40 @@
+div.required label:after {
+    content: ' *';
+    color: red;
+}
+
+.kv-expand-detail-row table {
+    width: auto !important;
+}
+
+.kv-expand-detail-row .kv-table-caption {
+    text-align: left;
+    font-size: 1.2em;
+    color: #000000;
+    padding-left: 0 !important;
+}
+
+.kv-expand-detail-row hr {
+    border-style: dashed;
+    border-color: #ffffff;
+}
+
+/* ----- Order Grid ----- */
+table#order-info th {
+    font-size: 95%;
+}
+
+/* ----- Order Form ----- */
+#order-customer_id {
+    width: 80%;
+}
+
+
+/**
+ ----- order/invoice/create -----
+ */
+#order-invoice-create #customers-list {
+    width: 75%;
+    display: inline-block;
+    vertical-align: middle;
+}
