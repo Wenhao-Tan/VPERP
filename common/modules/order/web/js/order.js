@@ -50,7 +50,7 @@ function getShippingAddress(customerID) {
     var inputShippingAddress = document.getElementById('order-shipping_address');
     var request = new XMLHttpRequest();
     var url = inputShippingAddress.dataset.url;
-    var params = 'customerID=' + customerID + '&_csrf=' + yii.getCsrfToken();
+    var params = 'customerID=' + customerID + '&_csrf-frontend=' + yii.getCsrfToken();
 
     request.open('POST', url, true);
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
