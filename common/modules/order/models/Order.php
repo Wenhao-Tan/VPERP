@@ -116,7 +116,7 @@ class Order extends ActiveRecord
     {
         $fileName = date('YmdHis');
         if ($this->validate()) {
-            $filePath = 'uploads/' . $fileName . '.' . $this->excelFile->extension;
+            $filePath = Yii::getAlias('@webroot') . '/upload/' . $fileName . '.' . $this->excelFile->extension;
             if ($this->excelFile->saveAs($filePath)){
                 $this->excelFilePath = $filePath;
             }

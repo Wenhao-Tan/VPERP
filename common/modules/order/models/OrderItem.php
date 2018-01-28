@@ -2,6 +2,7 @@
 
 namespace common\modules\order\models;
 
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 use yii\data\ArrayDataProvider;
 use yii\db\ActiveRecord;
 use yii\db\Exception;
@@ -24,10 +25,13 @@ class OrderItem extends ActiveRecord
     public function loadExcel($filePath)
     {
         // Load Uploaded Excel File & Get Sheet
-        $objPHPExcel = \PHPExcel_IOFactory::load($filePath);
-        $objWorksheet = $objPHPExcel->getSheet(0);
+        $reader = new Xlsx();
+        $reader->setReadDataOnly(true);
+        $spreadSheet = $reader->load($filePath);
 
-        return $objWorksheet;
+        $workSheet = $spreadSheet->getSheet(0);
+
+        return $workSheet;
     }
 
     public function calculateOrderQuantity($objWorksheet)
@@ -43,7 +47,7 @@ class OrderItem extends ActiveRecord
 
     public function generateItems($filePath)
     {
-        $objWorksheet = $this->loadExcel($filePath);
+        $workSheet = $this->loadExcel($filePath);
 
         $tableHeader = ['reference', 'color', 'quantity', 'unit_price'];
         $items = [];
@@ -51,14 +55,14 @@ class OrderItem extends ActiveRecord
         $orderAmount = 0;
 
         $rowCount = 1;
-        foreach ($objWorksheet->getRowIterator() as $row) {
+        foreach ($workSheet->getRowIterator() as $row) {
             if ($rowCount == 1) {
                 $rowCount++;
                 continue;
             }
 
             $cellIterator = $row->getCellIterator();
-            $cellIterator->setIterateOnlyExistingCells();
+            $cellIterator->setIterateOnlyExistingCells(false);
             $colCount = 0;
             foreach ($cellIterator as $cell) {
                 $header = $tableHeader[$colCount];

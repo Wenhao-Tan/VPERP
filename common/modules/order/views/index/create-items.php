@@ -31,20 +31,6 @@ $this->title = Yii::t('order', 'Create Items for Order #') . $model->order_id;
             'attributes' => [
                 'order_id' => [],
                 'order_date' => [],
-                'sales_representative' => [
-                    'type' => Form::INPUT_HIDDEN,
-                ],
-            ],
-        ]);
-
-        echo Form::widget([
-            'model' => $model,
-            'form' => $form,
-            'columns' => 4,
-            'attributeDefaults' => [
-                'type' => Form::INPUT_HIDDEN_STATIC,
-            ],
-            'attributes' => [
                 'customer_id' => [
                     'label' => 'Customer',
                     'staticValue' => function ($model) {
@@ -52,12 +38,8 @@ $this->title = Yii::t('order', 'Create Items for Order #') . $model->order_id;
                         return $customer->getFullName();
                     }
                 ],
-                'country_of_destination' => [
-                    'label' => 'Country',
-                    'staticValue' => function ($model) {
-                        $country = \common\models\Country::findOne(['country_code' => $model->country_of_destination]);
-                        return $country->country_name;
-                    }
+                'sales_representative' => [
+                    'type' => Form::INPUT_HIDDEN,
                 ],
             ],
         ]);
@@ -99,8 +81,6 @@ $this->title = Yii::t('order', 'Create Items for Order #') . $model->order_id;
         ]);
         ?>
     </div>
-
-    <hr/>
 
     <div class="col-sm-12">
         <?php
