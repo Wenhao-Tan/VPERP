@@ -5,7 +5,6 @@ use yii\helpers\ArrayHelper;
 use kartik\date\DatePicker;
 use common\modules\staff\models\StaffJobInfo;
 use backend\modules\user\models\UserAssigned;
-use common\models\Country;
 use common\models\Currency;
 use common\modules\order\Module;
 use common\modules\general\models\PaymentMethod;
@@ -61,6 +60,15 @@ $incoterm = [
             ])
         ?>
 
+        <?= $form->field($model, 'customer_id', [
+            'options' => ['class' => 'col-sm-4 form-group'],
+            'template' => '{label}' . Html::tag('div', '', ['class' => 'clearfix']) . '{input}'.
+                Html::a('<i class="glyphicon glyphicon-plus"></i>', ['/customer/index/create/'], ['class' => 'btn btn-success pull-right', 'target' => '_blank']) .
+                Html::tag('div', '', ['class' => 'clearfix'])
+                . '{hint}{error}',])
+            ->dropDownList($customersList,['prompt' => '','class' => 'form-control pull-left'])
+        ?>
+
         <?php
         if ($user->can('admin')) {
             echo $form->field($model, 'sales_representative', ['options' => ['class' => 'col-sm-4 form-group']])
@@ -72,17 +80,12 @@ $incoterm = [
     </div>
 
     <div class="row">
-        <?= $form->field($model, 'customer_id', [
-                'options' => ['class' => 'col-sm-4 form-group'],
-                'template' => '{label}' . Html::tag('div', '', ['class' => 'clearfix']) . '{input}'.
-                    Html::a('<i class="glyphicon glyphicon-plus"></i>', ['/customer/index/create/'], ['class' => 'btn btn-success pull-right', 'target' => '_blank']) .
-                    Html::tag('div', '', ['class' => 'clearfix'])
-                    . '{hint}{error}',])
-            ->dropDownList($customersList,['prompt' => '','class' => 'form-control pull-left']) ?>
+        <?= $form->field($model, 'billing_address', ['options' => ['class' => 'col-sm-8 form-group address']])
+            ->dropDownList([], ['prompt' => '', 'data-url' => \yii\helpers\Url::toRoute(['/customer/address/get-address'])]) ?>
     </div>
 
     <div class="row">
-        <?= $form->field($model, 'shipping_address', ['options' => ['class' => 'col-sm-8 form-group']])
+        <?= $form->field($model, 'shipping_address', ['options' => ['class' => 'col-sm-8 form-group address']])
             ->dropDownList([], ['prompt' => '', 'data-url' => \yii\helpers\Url::toRoute(['/customer/address/get-address'])]) ?>
     </div>
 
