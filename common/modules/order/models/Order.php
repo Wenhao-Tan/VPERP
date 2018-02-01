@@ -14,6 +14,8 @@ use yii\db\ActiveRecord;
  * @property string $sales_representative
  * @property string $customer_id
  * @property string $customer_name
+ * @property integer $billing_address
+ * @property integer $shipping_address
  * @property string $payment_method
  * @property string $currency
  * @property string $order_amount
@@ -51,7 +53,7 @@ class Order extends ActiveRecord
     {
         return [
             [['order_id', 'order_date'], 'trim'],
-            [['order_date', 'sales_representative', 'customer_id',
+            [['order_date', 'sales_representative', 'customer_id', 'billing_address', 'shipping_address',
                 'currency', 'order_amount', 'shipping_charges',
                 'custom_declaration'], 'required'],
             [['order_amount', 'shipping_charges', 'commission_rate', 'declaration_value'], 'number'],
@@ -79,7 +81,7 @@ class Order extends ActiveRecord
         $scenarios = parent::scenarios();
 
         $scenarios[self::SCENARIO_UPDATE] = [
-            'order_id', 'order_date', 'sales_representative', 'customer_id',
+            'order_id', 'order_date', 'sales_representative', 'customer_id', 'billing_address', 'shipping_address',
             'payment_method', 'currency', 'order_amount', 'shipping_charges', 'commission rate',
             'custom_declaration', 'declaration_value', 'incoterm',
             'remark'
@@ -99,6 +101,8 @@ class Order extends ActiveRecord
             'sales_representative' => Yii::t('order', 'Sales Representative'),
             'customer_id' => Yii::t('order', 'Customer ID'),
             'customer_name' => Yii::t('order', 'Client Name'),
+            'billing_address' => Yii::t('order', 'Billing Address'),
+            'shipping_address' => Yii::t('order', 'Shipping Address'),
             'payment_method' => Yii::t('order', 'Payment Method'),
             'currency' => Yii::t('order', 'Currency'),
             'order_amount' => Yii::t('order', 'Order Amount'),
