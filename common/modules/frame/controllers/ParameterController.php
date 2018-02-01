@@ -69,7 +69,7 @@ class ParameterController extends Controller
             return $this->redirect(['default/index', 'ParameterSearch[reference]' => $model->reference]);
         } else {
             return $this->render('create', [
-                'models' => $model,
+                'model' => $model,
             ]);
         }
     }
