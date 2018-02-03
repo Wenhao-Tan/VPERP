@@ -28,41 +28,40 @@ $(document).ready(function () {
     });
 });
 
-function updateShippingAddressOptions(address) {
-    var selectShippingAddress = document.getElementById('order-shipping_address');
+function updateAddresses(addresses) {
+    var selectAddresses = document.getElementsByClassName('address');
 
-    selectShippingAddress.options.length = 1;
+    for (var i in selectAddresses) {
+        if (selectAddresses.hasOwnProperty(i)) {
+            selectAddresses[i].options.length = 1;
 
-    if (address.length === 0) {
-        alert('The Shipping Address of the customer does not exist! Please create!');
-    } else {
-        for (var i in address) {
-            if (address.hasOwnProperty(i)) {
-                var value = address[i].id;
-                var text = address[i].name;
+            for (var j in addresses) {
+                if (addresses.hasOwnProperty(j)) {
+                    var text = addresses[j].name;
+                    var value = addresses[j].id;
+
+                    selectAddresses[i].options[selectAddresses[i].options.length] = new Option(text, value);
+                }
             }
-            selectShippingAddress.options[selectShippingAddress.options.length] = new Option(text, value, false, false);
         }
     }
 }
 
-function getShippingAddress(customerID) {
-    var inputShippingAddress = document.getElementById('order-shipping_address');
+function getAddresses(customerID) {
+    var selectBillingAddress = document.getElementById('order-billing_address');
+
     var request = new XMLHttpRequest();
-    var url = inputShippingAddress.dataset.url;
+    var url = selectBillingAddress.dataset.url;
     var params = 'customerID=' + customerID + '&_csrf-frontend=' + yii.getCsrfToken();
 
-    request.open('POST', url, true);
+    request.open('POST', url);
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-    request.onreadystatechange = function () {
-        if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-            var address = JSON.parse(request.responseText);
-            updateShippingAddressOptions(address);
-        }
-    };
-
     request.send(params);
+    request.addEventListener('load', function () {
+        if (request.readyState === 4 && request.status === 200) {
+            updateAddresses(JSON.parse(request.responseText));
+        }
+    })
 }
 
 window.addEventListener('load', function () {
@@ -119,6 +118,6 @@ window.addEventListener('load', function () {
      */
     var customerID = document.getElementById('order-customer_id');
     customerID.addEventListener('change', function () {
-        getShippingAddress(customerID.value);
+        getAddresses(customerID.value);
     })
 });

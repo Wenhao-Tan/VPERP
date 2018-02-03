@@ -80,13 +80,13 @@ $incoterm = [
     </div>
 
     <div class="row">
-        <?= $form->field($model, 'billing_address', ['options' => ['class' => 'col-sm-8 form-group address']])
-            ->dropDownList([], ['prompt' => '', 'data-url' => \yii\helpers\Url::toRoute(['/customer/address/get-address'])]) ?>
+        <?= $form->field($model, 'billing_address', ['options' => ['class' => 'col-sm-8 form-group']])
+            ->dropDownList([], ['prompt' => '', 'class' => 'form-control address', 'data-url' => \yii\helpers\Url::toRoute(['/customer/address/get-address'])]) ?>
     </div>
 
     <div class="row">
-        <?= $form->field($model, 'shipping_address', ['options' => ['class' => 'col-sm-8 form-group address']])
-            ->dropDownList([], ['prompt' => '', 'data-url' => \yii\helpers\Url::toRoute(['/customer/address/get-address'])]) ?>
+        <?= $form->field($model, 'shipping_address', ['options' => ['class' => 'col-sm-8 form-group']])
+            ->dropDownList([], ['prompt' => '', 'class' => 'form-control address', 'data-url' => \yii\helpers\Url::toRoute(['/customer/address/get-address'])]) ?>
     </div>
 
     <hr />
