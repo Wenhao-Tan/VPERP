@@ -11,7 +11,7 @@ use backend\modules\user\models\AssignForm;
 
 class IndexController extends Controller
 {
-    public $layout = '@frontend/views/layouts/erp.php';
+    // public $layout = '@frontend/views/layouts/erp.php';
 
     public function actionIndex()
     {

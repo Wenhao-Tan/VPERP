@@ -10,7 +10,7 @@ use common\modules\staff\models\StaffForm;
 
 class IndexController extends Controller
 {
-    public $layout = '@frontend/views/layouts/erp';
+    // public $layout = '@frontend/views/layouts/erp';
 
     public function actionIndex()
     {

@@ -57,6 +57,12 @@ class Order extends ActiveRecord
                 'currency', 'order_amount', 'shipping_charges',
                 'custom_declaration'], 'required'],
             [['order_amount', 'shipping_charges', 'commission_rate', 'declaration_value'], 'number'],
+            ['reference_id', 'required', 'when' => function () {
+                return $this->payment_method == 'Official Website' || $this->payment_method == 'Alibaba';
+            }, 'whenClient' => "function() {
+                return $('select[name=\"Order[payment_method]\"]').val() == 'Alibaba' || 
+                $('select[name=\"Order[payment_method]\"]').val() == 'Official Website';
+            }"],
             [['custom_declaration'], 'integer'],
             ['declaration_value', 'required', 'when' => function () {
                 return $this->custom_declaration == 1;
