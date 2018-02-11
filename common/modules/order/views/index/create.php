@@ -1,5 +1,7 @@
 <?php
 $this->title = 'Create an order';
+
+\common\modules\order\assets\CreateAsset::register($this);
 ?>
 
 <div class="row">

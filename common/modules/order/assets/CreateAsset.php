@@ -1,20 +1,22 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Paul
+ * Date: 2018/2/11
+ * Time: 7:36
+ */
+
 namespace common\modules\order\assets;
+
 
 use yii\web\AssetBundle;
 
-class OrderAsset extends AssetBundle
+class CreateAsset extends AssetBundle
 {
     public $sourcePath = '@common/modules/order/web';
 
-    public $css = [
-        'css/order.css',
-    ];
-
     public $js = [
-        'js/order.js',
-        'js/detail.js',
-        'js/invoice.js',
+        'js/create.js',
     ];
 
     public $depends = [
