@@ -32,7 +32,7 @@ $customerAddress->customer_id = $_GET['id'];
             <?= $form->field($address, 'city', ['options' => ['class' => 'form-group col-sm-2']]) ?>
             <?= $form->field($address, 'state', ['options' => ['class' => 'form-group col-sm-2']]) ?>
             <?= $form->field($address, 'country', ['options' => ['class' => 'form-group col-sm-2']])
-                ->dropDownList(\common\models\Country::getCountries(), ['prompt' => '']);
+                ->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\Country::find()->all(), 'country_name', 'country_name'), ['prompt' => '']);
             ?>
             <?= $form->field($address, 'zip_code', ['options' => ['class' => 'form-group col-sm-2']]) ?>
         </div>
