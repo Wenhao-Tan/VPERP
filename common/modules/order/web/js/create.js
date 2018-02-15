@@ -43,5 +43,17 @@ window.addEventListener('load', function () {
     var customerID = document.getElementById('order-customer_id');
     customerID.addEventListener('change', function () {
         getAddresses(customerID.value);
-    })
+    });
+
+    var paymentMethod = document.getElementById('order-payment_method');
+    var referenceID = document.getElementsByClassName('field-order-reference_id');
+    if (paymentMethod && referenceID) {
+        paymentMethod.addEventListener('change', function () {
+            if (paymentMethod.value === 'Alibaba' || paymentMethod.value === 'Official Website') {
+                referenceID[0].style.display = 'block';
+            } else {
+                referenceID[0].style.display = 'none';
+            }
+        })
+    }
 });

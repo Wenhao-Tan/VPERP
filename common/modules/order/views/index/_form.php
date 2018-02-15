@@ -94,7 +94,7 @@ $incoterm = [
     <div class="row">
         <?= $form->field($model, 'payment_method', ['options' => ['class' => 'col-sm-5 form-group']])
             ->dropDownList(ArrayHelper::map(PaymentMethod::find()->all(), 'payment_method', 'payment_method')) ?>
-        <?= $form->field($model, 'reference_id', ['options' => ['class' => 'col-sm-4 form-group']]) ?>
+        <?= $form->field($model, 'reference_id', ['options' => ['class' => 'col-sm-4 form-group', 'style' => 'display:none']]) ?>
     </div>
     <div class="row">
         <?= $form->field($model, 'currency', ['options' => ['class' => 'col-sm-3 form-group']])

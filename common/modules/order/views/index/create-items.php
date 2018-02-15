@@ -79,6 +79,29 @@ $this->title = Yii::t('order', 'Create Items for Order #') . $model->order_id;
                 'incoterm' => [],
             ],
         ]);
+
+        echo '<hr>';
+
+        echo Form::widget([
+            'model' => $model,
+            'form' => $form,
+            'columns' => 2,
+            'attributeDefaults' => [
+                'type' => Form::INPUT_HIDDEN_STATIC,
+            ],
+            'attributes' => [
+                'billing_address' => [
+                    'staticValue' => function ($model) {
+                        return \common\modules\customer\models\Address::get($model->billing_address)->format(true)->generate();
+                    }
+                ],
+                'shipping_address' => [
+                    'staticValue' => function ($model) {
+                        return \common\modules\customer\models\Address::get($model->shipping_address)->format(true)->generate();
+                    }
+                ],
+            ],
+        ])
         ?>
     </div>
 
