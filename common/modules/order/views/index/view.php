@@ -1,144 +1,162 @@
 <?php
-use backend\modules\user\models\UserAssigned;
-use common\modules\order\Module;
-use kartik\grid\GridView;
-use yii\bootstrap\Html;
-use yii\helpers\Url;
 
-/*
- * Get Current Username
- */
-$username = Yii::$app->user->identity->username;
+use kartik\detail\DetailView;
 
-/*
- * Get the Staff ID of current user
- * 获取当前用户的 员工ID
- */
-$userAssigned = UserAssigned::findOne(['username' => $username]);
-$staffId = ($userAssigned != null) ? $userAssigned->staff_id : null;
-if ($username != 'admin') {
-    $dataProvider->query->where(['order.sales_representative' => $staffId]);
-}
+$this->title = Yii::t('order', 'Order Detail');
 
-
-$grid = array();
-
-$grid['columns'] = [
-    ['class' => 'yii\grid\CheckboxColumn'],
-    ['class' => 'yii\grid\SerialColumn'],
-    [
-        'attribute' => 'order_id',
-        'label' => Module::t('order', 'Order ID'),
-    ],
-    [
-        'attribute' => 'order_date',
-        'label' => Module::t('order', 'Order Date'),
-        'contentOptions' => ['class' => 'text-center'],
-    ],
-    [
-        'attribute' => 'sales_representative',
-        'label' => Module::t('order', 'Sales Representative'),
-        'visible' => Yii::$app->user->can('admin'),
-    ],
-    [
-        'attribute' => 'full_name',
-    ],
-    [
-        'attribute' => 'country_of_destination',
-        'label' => Module::t('order', 'Country/Region'),
-        'contentOptions' => ['class' => 'text-center'],
-    ],
-    [
-        'attribute' => 'currency',
-        'label' => Module::t('order', 'Currency'),
-    ],
-    [
-        'attribute' => 'order_amount',
-        'label' => Module::t('order', 'Order Amount'),
-        'contentOptions' => ['class' => 'text-right'],
-    ],
-    [
-        'attribute' => 'commission_rate',
-        'label' => Module::t('order', 'Commission Rate (%)'),
-        'contentOptions' => ['class' => 'text-right'],
-        'visible' => Yii::$app->user->can('admin'),
-    ],
-    [
-        'attribute' => 'custom_declaration',
-        'label' => Module::t('order', 'Custom Declaration'),
-        'contentOptions' => ['class' => 'text-center'],
-        'format' => 'boolean',
-        'filter' => ['1' => Yii::t('order', 'Yes'), '0' => Yii::t('order', 'No')],
-    ],
-    [
-        'attribute' => 'status',
-        'label' => Module::t('order', 'Status'),
-    ],
-    [
-        'class' => 'kartik\grid\ActionColumn',
-        'template' => '{invoice}{detail}{update}{delete}',
-        'buttons' => [
-            'invoice' => function ($url, $model) {
-                $url = Url::toRoute(['index/invoice', 'orderId' => $model->order_id]);
-                return Html::a('<i class="fa fa-paperclip"></i>', $url, ['class' => 'a-generate-invoice']);
-            },
-            'detail' => function ($url, $model) {
-                $url = Url::toRoute(['detail', 'orderId' => $model->order_id]);
-                return Html::a('<i class="glyphicon glyphicon-eye-open"></i>', $url, ['class' => 'a-order-detail']);
-            },
-            'update' => function ($url, $model) {
-                $url = Url::toRoute(['update', 'orderId' => $model->order_id]);
-                return Html::a('<i class="glyphicon glyphicon-pencil"></i>', $url, ['class' => 'a-update-order colobox']);
-            },
-            'delete' => function ($url, $model) {
-                $url = Url::toRoute(['index/delete', 'orderId' => $model->order_id]);
-                return Html::a('<i class="glyphicon glyphicon-remove"></i>', $url, ['class' => 'a-delete-order']);
-            },
-
-        ],
-        'visibleButtons' => [
-            'invoice' => Yii::$app->user->can('admin'),
-            'update' => Yii::$app->user->can('admin'),
-            'delete' => Yii::$app->user->can('admin'),
-        ],
-    ],
-
-];
-
-$grid['toolbar'] = [
-    [
-        'content' => Html::a(Yii::t('order', 'Create'), ['create'], ['class' => 'btn btn-success'])
-    ],
-    [
-        'content' => Yii::$app->user->can('admin') ?
-            Html::button('<i class="glyphicon glyphicon-remove"></i>' . Module::t('order', 'Delete'), [
-                'type' => 'button',
-                'title' => Module::t('order', 'Delete Orders'),
-                'class' => 'btn btn-danger',
-                'id' => 'btn-delete-orders'
-            ]) : ''
-    ],
-    '{export}',
-    '{toggleData}',
-];
 ?>
 
 <?php
-echo GridView::widget([
-    'dataProvider' => $dataProvider,
-    'filterModel' => $searchModel,
-    'tableOptions' => ['id' => 'order-info'],
+// Order Information
+echo DetailView::widget([
+    'model' => $order,
+    'bordered' => true,
+    'striped' => false,
+    'responsive' => true,
+    'hover' => true,
+    'mode' => DetailView::MODE_VIEW,
+    'enableEditMode' => false,
     'panel' => [
-        'type' => 'default',
+        'type' => 'primary',
+        'heading' => 'Order # ' . $order->order_id,
+        'footer' => '<strong>Status: ' . $order->status . '</strong>',
     ],
-    'toolbar' => $grid['toolbar'],
-    'columns' => $grid['columns'],
-    'rowOptions' => function ($model, $index, $widget, $grid) {
-        if ($model->status == 'Unpaid' || $model->status == 'Created') {
-            return ['class' => 'danger'];
-        } else if ($model->status == 'Paid' || $model->status == 'Processing') {
-            return ['class' => 'success'];
-        }
-    },
+    'attributes' => [
+        [
+            'group' => true,
+            'label' => Yii::t('order', 'Order Information'),
+            'rowOptions' => ['class' => 'info']
+        ],
+        [
+            'columns' => [
+                [
+                    'attribute' => 'order_date',
+                    'format' => 'date',
+                    'displayOnly' => true,
+                    'valueColOptions' => ['style' => 'width:30%'],
+                ],
+                [
+                    'attribute' => 'sales_representative',
+                    'value' => \common\modules\staff\models\StaffJobInfo::findOne(['staff_id' => $order->sales_representative])->english_name,
+                    'displayOnly' => true,
+                    'valueColOptions' => ['style' => 'width:30%'],
+                ],
+            ],
+        ],
+        [
+            'columns' => [
+                [
+                    'attribute' => 'customer_id',
+                    'value' => \common\modules\customer\models\Customer::getFullName($order->customer_id),
+                    'valueColOptions' => ['style' => 'width:30%'],
+                ],
+                [
+                    'attribute' => 'country_of_destination',
+                    'valueColOptions' => ['style' => 'width:30%'],
+                ],
+
+            ],
+        ],
+        [
+            'group' => true,
+            'label' => Yii::t('order', 'Payment Info'),
+            'rowOptions' => ['class' => 'info']
+        ],
+        [
+            'columns' => [
+                [
+                    'attribute' => 'payment_method',
+                    'valueColOptions' => ['style' => 'width:30%'],
+                ],
+                [
+                    'attribute' => 'order_amount',
+                    'valueColOptions' => ['style' => 'width:30%'],
+                ],
+            ],
+        ],
+        [
+            'columns' => [
+                [
+                    'attribute' => 'currency',
+                    'valueColOptions' => ['style' => 'width:30%'],
+                ],
+                [
+                    'attribute' => 'shipping_charges',
+                    'valueColOptions' => ['style' => 'width:30%'],
+                ],
+            ],
+        ],
+        [
+            'group' => true,
+            'label' => Yii::t('order', 'Shipping Info'),
+            'rowOptions' => ['class' => 'info']
+        ],
+        [
+            'columns' => [
+                [
+                    'attribute' => 'billing_address',
+                    'format' => 'raw',
+                    'value' => \common\modules\customer\models\Address::get($order->billing_address)->format(true)->generate(),
+                    'valueColOptions' => ['style' => 'width:30%'],
+                ],
+                [
+                    'attribute' => 'shipping_address',
+                    'format' => 'raw',
+                    'value' => \common\modules\customer\models\Address::get($order->shipping_address)->format(true)->generate(),
+                    'valueColOptions' => ['style' => 'width:30%'],
+                ],
+            ],
+        ],
+        [
+            'columns' => [
+                [
+                    'attribute' => 'custom_declaration',
+                    'format' => 'raw',
+                    'value' => $order->custom_declaration == 1 ?
+                        '<span class="label label-success">Yes</span>' : '<span class="label label-danger">No</span>',
+                    'valueColOptions' => ['style' => 'width:30%'],
+                ],
+                [
+                    'attribute' => 'incoterm',
+                    'valueColOptions' => ['style' => 'width:30%'],
+                ],
+            ],
+        ],
+        [
+            'columns' => [
+                [
+                    'attribute' => 'declaration_value',
+                    'labelColOptions' => ['style' => 'width:20%; text-align:right; vertical-align:middle'],
+                ],
+            ],
+        ],
+        [
+            'columns' => [
+                [
+                    'attribute' => 'remark',
+                ],
+            ],
+        ]
+
+    ],
+]);
+?>
+
+<?php
+// Order Items
+echo $this->render('view/items.php', [
+    'order' => $order,
+]);
+?>
+
+<?php
+echo $this->render('view/payment.php', [
+    'order' => $order,
+]);
+?>
+
+<?php
+echo $this->render('view/shipping.php', [
+    'order' => $order,
 ]);
 ?>

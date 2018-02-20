@@ -86,8 +86,42 @@ class Customer extends ActiveRecord
         return $customersList;
     }
 
+    /*
     public function getFullName()
     {
-        return $this->given_name . ' ' . $this->family_name;
+        $full_name = '';
+
+        if ($this->given_name) {
+            $full_name .= $this->given_name;
+        }
+
+        if ($this->family_name) {
+            $full_name .= ' ' . $this->family_name;
+        }
+
+        return trim($full_name);
+    }
+    */
+
+    public static function getFullName($id)
+    {
+        $full_name = '';
+
+        $customer = Customer::findOne(['id' => $id]);
+
+        if ($customer) {
+            $given_name = $customer->given_name;
+            $family_name = $customer->family_name;
+
+            if ($given_name) {
+                $full_name .= $given_name;
+            }
+
+            if ($family_name) {
+                $full_name .= ' ' . $family_name;
+            }
+        }
+
+        return trim($full_name);
     }
 }

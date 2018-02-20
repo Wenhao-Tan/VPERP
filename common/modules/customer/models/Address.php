@@ -52,17 +52,19 @@ class Address extends ActiveRecord
         $model = Address::findOne($id);
         static::$address = [];
 
-        static::$address['name'] = $model->name;
-        static::$address['company'] = $model->company;
-        static::$address['street_1'] = $model->street_1;
-        static::$address['street_2'] = $model->street_2;
-        static::$address['city'] = $model->city;
-        static::$address['state'] = $model->state;
-        static::$address['zip_code'] = $model->zip_code;
-        static::$address['country'] = $model->country;
-        static::$address['mobile_phone'] = $model->mobile_phone;
+        if ($model) {
+            static::$address['name'] = $model->name;
+            static::$address['company'] = $model->company;
+            static::$address['street_1'] = $model->street_1;
+            static::$address['street_2'] = $model->street_2;
+            static::$address['city'] = $model->city;
+            static::$address['state'] = $model->state;
+            static::$address['zip_code'] = $model->zip_code;
+            static::$address['country'] = $model->country;
+            static::$address['mobile_phone'] = $model->mobile_phone;
 
-        static::$address = array_filter(static::$address, function ($value) { return $value !== '';});
+            static::$address = array_filter(static::$address, function ($value) { return $value !== '';});
+        }
 
         return new static;
     }

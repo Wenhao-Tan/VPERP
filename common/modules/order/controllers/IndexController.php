@@ -79,11 +79,11 @@ class IndexController extends Controller
         ]);
     }
 
-    public function actionDetail($orderId)
+    public function actionView($orderId)
     {
         $order = $this->findModel($orderId);
 
-        return $this->render('detail',[
+        return $this->render('view',[
             'order' => $order,
         ]);
     }

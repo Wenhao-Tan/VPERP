@@ -11,7 +11,7 @@ $this->title = Module::t('order', 'Order Information');
         'items' => [
             [
                 'label' => Module::t('order', 'View Orders'),
-                'content' => $this->render('view', [
+                'content' => $this->render('grid', [
                     'dataProvider' => $dataProvider['order'],
                     'searchModel' => $searchModel['order'],
                 ]),
