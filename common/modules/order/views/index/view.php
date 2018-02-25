@@ -15,7 +15,8 @@ echo DetailView::widget([
     'responsive' => true,
     'hover' => true,
     'mode' => DetailView::MODE_VIEW,
-    'enableEditMode' => false,
+    // 'enableEditMode' => false,
+    'buttons1' => \yii\helpers\Html::a('<i class="glyphicon glyphicon-print"></i>', ['index/invoice', 'orderId' => $_GET['orderId']], ['class' => 'kv-action-btn']),
     'panel' => [
         'type' => 'primary',
         'heading' => 'Order # ' . $order->order_id,

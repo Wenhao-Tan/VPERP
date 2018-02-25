@@ -20,7 +20,8 @@ class Invoice extends Model
         $header['center'] .= '<p>16 Xuxi Road, Situ Town, Danyang, Jiangsu, China 212300</p>';
 
         $pdf = new Pdf([
-            'mode' => 'utf-8',
+            'mode' => Pdf::MODE_UTF8,
+            'format' => Pdf::FORMAT_A4,
             'content' => $content,
             'marginTop' => 20,
             'options' => ['title' => 'Proforma Invoice'],

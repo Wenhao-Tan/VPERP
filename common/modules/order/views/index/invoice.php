@@ -1,4 +1,7 @@
 <?php
+$customer = $order->customer;
+
+var_dump($customer);
 ?>
 
 <div class="title text-center">
