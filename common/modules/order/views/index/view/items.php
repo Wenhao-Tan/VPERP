@@ -20,16 +20,24 @@ echo GridView::widget([
         'color',
         [
             'attribute' => 'quantity',
+            'contentOptions' => ['class' => 'text-right'],
             'footer' => \common\modules\order\models\OrderItem::getTotalQuantity($dataProvider->models),
+            'footerOptions' => ['class' => 'text-right'],
         ],
-        'unit_price',
+        [
+            'attribute' => 'unit_price',
+            'contentOptions' => ['class' => 'text-right'],
+        ],
         [
             'attribute' => 'amount',
             'label' => Yii::t('order', 'Amount'),
+            'headerOptions' => ['class' => 'text-center'],
             'value' => function ($model) {
                 return number_format((float)$model->quantity * $model->unit_price, 2, '.', ',');
             },
+            'contentOptions' => ['class' => 'text-right'],
             'footer' => \common\modules\order\models\OrderItem::getTotalAmount($dataProvider->models),
+            'footerOptions' => ['class' => 'text-right'],
         ],
     ],
 ]);

@@ -14,12 +14,13 @@ class FrameAsset extends AssetBundle
     ];
 
     public $jsOptions = [
-        'position' => View::POS_END,
+        // 'position' => View::POS_END,
     ];
 
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapPluginAsset',
-        'yii\widgets\PjaxAsset',
+        // 'yii\web\YiiAsset',
+        // 'yii\bootstrap\BootstrapPluginAsset',
+        // 'yii\widgets\PjaxAsset',
+        // 'common\assets\CommonAsset',
     ];
 }

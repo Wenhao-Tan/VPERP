@@ -2,7 +2,7 @@
 
 
 /* --- Frame Price GridView --- */
-$(document).on('ready pjax:success', function() {
+
     $('#frame-price-grid .update-price').on('click', function (e) {
         e.preventDefault();
 
@@ -20,6 +20,4 @@ $(document).on('ready pjax:success', function() {
             href: this.href + '?keyList=' + keys.join(',')
         });
     });
-
-});
 

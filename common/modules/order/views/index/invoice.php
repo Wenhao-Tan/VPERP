@@ -1,7 +1,8 @@
 <?php
-$customer = $order->customer;
+use common\modules\customer\models\Address;
+use kartik\grid\GridView;
 
-var_dump($customer);
+$shippingAddress = Address::get($order->shipping_address)->format(true)->generate();
 ?>
 
 <div class="title text-center">
@@ -13,13 +14,19 @@ var_dump($customer);
     <p>Date: <?= $order->order_date ?></p>
 </div>
 
-<div class="client">
+<div class="buyer-info">
     <h4>Buyer Info</h4>
-    <p>Name:</p>
-    <p>Address:</p>
-    <p>Tel:</p>
+    <div class="col-sm-12">
+        <?= $shippingAddress ?>
+    </div>
 </div>
 
-<div class="order-item">
+<hr />
 
+<div class="order-items">
+    <?php
+    echo $this->render('view/items',[
+            'order' => $order,
+    ])
+    ?>
 </div>

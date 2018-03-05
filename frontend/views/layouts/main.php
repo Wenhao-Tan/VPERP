@@ -12,7 +12,6 @@ use frontend\assets\AppAsset;
 use common\assets\CommonAsset;
 
 AppAsset::register($this);
-CommonAsset::register($this);
 
 $controller_id = Yii::$app->controller->id;
 $action_id = Yii::$app->controller->action->id;

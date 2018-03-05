@@ -126,6 +126,7 @@ $btnUpdate = Html::button('<i class="glyphicon glyphicon-pencil"></i> Update', [
         ])],
         '{export}',
     ],
+    'pjax' => true,
 ]);
 ?>
 <?php Pjax::end() ?>

@@ -22,6 +22,7 @@ class CommonAsset extends AssetBundle
         'js/jquery.colorbox.js',
         'js/jquery.colorbox-min.js',
     ];
+
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',

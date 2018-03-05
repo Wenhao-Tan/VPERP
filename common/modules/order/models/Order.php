@@ -2,6 +2,7 @@
 
 namespace common\modules\order\models;
 
+use common\modules\customer\models\Address;
 use common\modules\customer\models\Customer;
 use Yii;
 use yii\db\ActiveRecord;
@@ -154,6 +155,11 @@ class Order extends ActiveRecord
     public function getCustomer()
     {
         return $this->hasOne(Customer::className(), ['id' => 'customer_id']);
+    }
+
+    public function getShippingAddress()
+    {
+        return $this->hasOne(Address::className(), ['id' => 'shipping_address']);
     }
 
     public function afterSave($insert, $changedAttributes)

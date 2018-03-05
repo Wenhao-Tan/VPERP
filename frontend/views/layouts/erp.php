@@ -7,10 +7,6 @@
  */
 
 use yii\helpers\Html;
-use frontend\assets\PrototypeJsAsset;
-use common\assets\CommonAsset;
-
-// PrototypeJsAsset::register($this);
 
 ?>
 

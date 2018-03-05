@@ -34,8 +34,7 @@ $this->title = Yii::t('order', 'Create Items for Order #') . $model->order_id;
                 'customer_id' => [
                     'label' => 'Customer',
                     'staticValue' => function ($model) {
-                        $customer = \common\modules\customer\models\Customer::findOne($model->customer_id);
-                        return $customer->getFullName();
+                        return \common\modules\customer\models\Customer::getFullName($model->customer_id);
                     }
                 ],
                 'sales_representative' => [

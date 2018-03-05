@@ -63,6 +63,4 @@ if (!isset($dataProvider)) {
         '{export}',
         '{toggleData}',
     ],
-    'pjax' => true,
-
 ]); ?>
