@@ -12,15 +12,6 @@ use frontend\assets\AppAsset;
 use common\assets\CommonAsset;
 
 AppAsset::register($this);
-
-$controller_id = Yii::$app->controller->id;
-$action_id = Yii::$app->controller->action->id;
-$page_name = $controller_id . '-' . $action_id;
-
-$module_id = Yii::$app->controller->module->id;
-if ($module_id) {
-    $page_name = $module_id . '-' . $page_name;
-}
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -71,7 +62,8 @@ if ($module_id) {
         $navItems[] = [
             'label' => 'Frame',
             'items' => [
-                ['label' => 'Frames', 'url' => ['/frame/default']],
+                ['label' => 'Parameter', 'url' => ['/frame/parameter']],
+                ['label' => 'Price', 'url' => ['/frame/price']],
                 ['label' => 'Attributes', 'url' => ['/frame/attribute']],
             ],
         ];
@@ -102,7 +94,7 @@ if ($module_id) {
     NavBar::end();
     ?>
 
-    <div id="<?= $page_name ?>" class="container">
+    <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>

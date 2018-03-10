@@ -2,7 +2,6 @@
 
 use kartik\grid\GridView;
 use frontend\modules\frame\models\ParameterSearch;
-use yii\bootstrap\Html;
 use yii\helpers\Url;
 
 if (!isset($dataProvider)) {
@@ -11,13 +10,10 @@ if (!isset($dataProvider)) {
 }
 ?>
 
-    <p>
-        <?= Html::a(Yii::t('frame', 'Create Model'), ['parameter/create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
+    'panel' => ['type' => 'default'],
     'columns' => [
         ['class' => 'yii\grid\CheckboxColumn'],
 
@@ -80,6 +76,7 @@ if (!isset($dataProvider)) {
             ],
         ],
 
+        /*
         [
             'class' => 'kartik\grid\ExpandRowColumn',
             'value' => function () {
@@ -90,9 +87,7 @@ if (!isset($dataProvider)) {
                     'key' => $key,
                 ]);
             },
-
         ],
+        */
     ],
-    'summary' => '',
-    'pjax' => true,
 ]); ?>

@@ -15,8 +15,4 @@ class CustomerAsset extends AssetBundle
     public $css = [
         'css/customer.css',
     ];
-
-    public $publishOptions = [
-        'forceCopy' => true,
-    ];
 }

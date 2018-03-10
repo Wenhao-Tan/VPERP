@@ -14,6 +14,7 @@ use yii\filters\VerbFilter;
  */
 class ParameterController extends Controller
 {
+    public $layout = 'frame';
     /**
      * @inheritdoc
      */
@@ -88,7 +89,7 @@ class ParameterController extends Controller
             return $this->redirect(['default/index', 'ParameterSearch[reference]' => $model->reference]);
         } else {
             return $this->render('update', [
-                'models' => $model,
+                'model' => $model,
             ]);
         }
     }

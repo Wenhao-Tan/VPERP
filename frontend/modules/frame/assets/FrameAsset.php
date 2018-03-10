@@ -3,11 +3,10 @@ namespace frontend\modules\frame\assets;
 
 
 use yii\web\AssetBundle;
-use yii\web\View;
 
 class FrameAsset extends AssetBundle
 {
-    public $sourcePath = '@common/modules/frame/web';
+    public $sourcePath = '@frontend/modules/frame/web';
 
     public $js = [
         'js/frame.js',
@@ -18,9 +17,7 @@ class FrameAsset extends AssetBundle
     ];
 
     public $depends = [
-        // 'yii\web\YiiAsset',
-        // 'yii\bootstrap\BootstrapPluginAsset',
-        // 'yii\widgets\PjaxAsset',
-        // 'common\assets\CommonAsset',
+        'frontend\assets\AppAsset',
+        'common\assets\CommonAsset',
     ];
 }

@@ -14,6 +14,8 @@ use yii\filters\VerbFilter;
  */
 class PriceController extends Controller
 {
+    public $layout = 'frame';
+
     /**
      * @inheritdoc
      */
@@ -88,7 +90,7 @@ class PriceController extends Controller
             return $this->redirect(['default/index', 'PriceSearch[reference]' => $model->reference], 301);
         } else {
             return $this->renderAjax('update', [
-                'models' => $model,
+                'model' => $model,
             ]);
         }
     }
@@ -105,11 +107,11 @@ class PriceController extends Controller
                 $model->save();
             }
 
-            return $this->redirect(['default/index']);
+            return $this->redirect(['price/index']);
         }
 
         return $this->renderAjax('multiple-updates', [
-            'models' => $model,
+            'model' => $model,
             'keys' => $keys,
         ]);
     }

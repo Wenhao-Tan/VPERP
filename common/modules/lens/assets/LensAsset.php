@@ -17,10 +17,6 @@ class LensAsset extends AssetBundle
         'position' => View::POS_END,
     ];
 
-    public $publishOptions = [
-        'forceCopy' => true,
-    ];
-
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapPluginAsset',

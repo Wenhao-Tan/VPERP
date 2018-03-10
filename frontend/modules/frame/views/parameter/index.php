@@ -8,36 +8,16 @@ use yii\widgets\Pjax;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Parameters';
+
+$this->params['breadcrumbs'][] = ['label' => Yii::t('frame', 'Frame'), 'url' => ['parameter/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="parameter-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['models' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Parameter', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('frame', 'Create Model'), ['parameter/create'], ['class' => 'btn btn-success']) ?>
     </p>
-<?php Pjax::begin(); ?>    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
 
-            'reference',
-            'front_material',
-            'temple_material',
-            'rim_type',
-            'shape',
-            // 'lens_width',
-            // 'bridge_width',
-            // 'temple_length',
-            // 'frame_width',
-            // 'lens_height',
-            // 'spring_hinge',
-            // 'clip_on',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
-<?php Pjax::end(); ?></div>
+    <?= $this->render('_grid') ?>

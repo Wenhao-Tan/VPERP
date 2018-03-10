@@ -1,6 +1,6 @@
 <?php
 
-use common\modules\frame\models\Parameter;
+use frontend\modules\frame\models\Parameter;
 
 $customization = $model->findOne($key);
 

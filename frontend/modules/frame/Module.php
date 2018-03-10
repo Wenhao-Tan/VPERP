@@ -29,12 +29,6 @@ class Module extends \yii\base\Module
         Yii::$app->i18n->translations['modules/frame/*'] = [
             'class' => 'yii\i18n\DbMessageSource',
             'sourceLanguage' => 'en-US',
-            /*
-            'basePath' => '@common/modules/frame/messages',
-            'fileMap' => [
-                'modules/frame/frame' => 'frame.php',
-            ],
-            */
         ];
     }
 

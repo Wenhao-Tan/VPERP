@@ -1,0 +1,8 @@
+body {
+    font-family: 'Calibri', 'Microsoft YaHei UI';
+    font-size: 13px;
+}
+
+table th {
+    white-space: nowrap;
+}

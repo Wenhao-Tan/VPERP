@@ -1,7 +1,6 @@
 <?php
 
 use kartik\grid\GridView;
-use yii\widgets\Pjax;
 use frontend\modules\frame\models\PriceSearch;
 use yii\helpers\Url;
 use yii\bootstrap\Html;
@@ -19,6 +18,19 @@ if (!isset($dataProvider)) {
     'id' => 'frame-price-grid',
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
+    'panel' => ['type' => 'default'],
+    'toolbar' => [
+        [
+            'content' => Yii::$app->user->can('admin') ?
+                Html::a('<i class="glyphicon glyphicon-pencil"></i>', ['price/multiple-updates'], [
+                    'title' => Yii::t('frame', 'Update Prices'),
+                    'class' => 'btn btn-success price-multiple-updates',
+                ]) : '' . ' '
+        ],
+        '{export}',
+        '{toggleData}',
+    ],
+
     'columns' => [
         ['class' => 'yii\grid\CheckboxColumn'],
 
@@ -47,20 +59,5 @@ if (!isset($dataProvider)) {
             },
             'visible' => Yii::$app->user->can('admin'),
         ],
-    ],
-    'summary' => '',
-    'panel' => [
-        'type' => 'default',
-    ],
-    'toolbar' => [
-        [
-            'content' => Yii::$app->user->can('admin') ?
-                Html::a('<i class="glyphicon glyphicon-pencil"></i>', ['price/multiple-updates'], [
-                    'title' => Yii::t('frame', 'Update Prices'),
-                    'class' => 'btn btn-success price-multiple-updates',
-                ]) : '' . ' '
-        ],
-        '{export}',
-        '{toggleData}',
     ],
 ]); ?>
