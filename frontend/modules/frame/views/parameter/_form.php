@@ -25,16 +25,16 @@ $shape = FrameParamShape::find()->select('shape')->indexBy('shape')->column();
 
     <div class="row">
         <?= $form->field($model, 'front_material', ['options' => ['class' => 'col-xs-2 form-group']])
-            ->dropDownList($material) ?>
+            ->dropDownList($material, ['prompt' => '']) ?>
 
         <?= $form->field($model, 'temple_material', ['options' => ['class' => 'col-xs-2 form-group']])
-            ->dropDownList($material) ?>
+            ->dropDownList($material, ['prompt' => '']) ?>
 
         <?= $form->field($model, 'rim_type', ['options' => ['class' => 'col-xs-2 form-group']])
-            ->dropDownList($rimType) ?>
+            ->dropDownList($rimType, ['prompt' => '']) ?>
 
         <?= $form->field($model, 'shape', ['options' => ['class' => 'col-xs-2 form-group']])
-            ->dropDownList($shape) ?>
+            ->dropDownList($shape, ['prompt' => '']) ?>
     </div>
 
     <div class="row">

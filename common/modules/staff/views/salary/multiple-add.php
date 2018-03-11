@@ -108,7 +108,7 @@ $orders = \common\modules\order\models\Order::find()
     ->where([
         'sales_representative' => '1001',
         'status' => 'Shipped',
-        'DATE_FORMAT(latest_shipping_date,"%Y-%m")' => '2017-10'])
+        'DATE_FORMAT(latest_shipping_date,"%Y-%m")' => '2018-02'])
     ->orderBy('`order`.`order_date` DESC')
     ->asArray()
     ->all();

@@ -70,7 +70,7 @@ class SourceMessageController extends Controller
             return $this->redirect(['/translation/message']);
         } else {
             return $this->render('create', [
-                'models' => $model,
+                'model' => $model,
             ]);
         }
     }

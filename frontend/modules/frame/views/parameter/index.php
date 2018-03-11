@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel frontend\modules\frame\models\ParameterSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Parameters';
+$this->title = Yii::t('frame', 'Parameter');
 
 $this->params['breadcrumbs'][] = ['label' => Yii::t('frame', 'Frame'), 'url' => ['parameter/index']];
 $this->params['breadcrumbs'][] = $this->title;

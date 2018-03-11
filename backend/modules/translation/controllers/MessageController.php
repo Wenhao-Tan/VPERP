@@ -95,7 +95,7 @@ class MessageController extends Controller
             return $this->redirect(['view', 'id' => $model->id, 'language' => $model->language]);
         } else {
             return $this->render('create', [
-                'models' => $model,
+                'model' => $model,
             ]);
         }
     }

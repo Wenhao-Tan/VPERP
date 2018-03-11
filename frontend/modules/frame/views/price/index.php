@@ -15,9 +15,5 @@ $this->params['breadcrumbs'][] = Yii::t('frame', $this->title);
 
     <?php // echo $this->render('_search', ['models' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a(Yii::t('frame', 'Create Price'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <?= $this->render('_grid') ?>
 </div>
