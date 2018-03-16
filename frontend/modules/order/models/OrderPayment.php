@@ -6,7 +6,7 @@
  * Time: 7:10
  */
 
-namespace common\modules\order\models;
+namespace frontend\modules\order\models;
 
 
 use yii\db\ActiveRecord;

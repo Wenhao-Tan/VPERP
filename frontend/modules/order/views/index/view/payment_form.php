@@ -8,7 +8,7 @@ use kartik\date\DatePicker;
 use common\models\Currency;
 use common\modules\general\models\PaymentMethod;
 
-$orderPayment = new \common\modules\order\models\OrderPayment();
+$orderPayment = new \frontend\modules\order\models\OrderPayment();
 $orderPayment->order_id = $_GET['orderId'];
 ?>
 

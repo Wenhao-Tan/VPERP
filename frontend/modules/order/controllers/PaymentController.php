@@ -6,14 +6,14 @@
  * Time: 6:59
  */
 
-namespace common\modules\order\controllers;
+namespace frontend\modules\order\controllers;
 
-use common\modules\order\models\Order;
+use frontend\modules\order\models\Order;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
-use common\modules\order\models\OrderPaymentForm;
-use common\modules\order\models\OrderPayment;
+use frontend\modules\order\models\OrderPaymentForm;
+use frontend\modules\order\models\OrderPayment;
 
 class PaymentController extends Controller
 {

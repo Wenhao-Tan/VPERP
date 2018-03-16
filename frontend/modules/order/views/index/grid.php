@@ -1,6 +1,6 @@
 <?php
 use backend\modules\user\models\UserAssigned;
-use common\modules\order\Module;
+use frontend\modules\order\Module;
 use kartik\grid\GridView;
 use yii\bootstrap\Html;
 use yii\helpers\Url;
