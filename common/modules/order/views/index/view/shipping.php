@@ -8,7 +8,7 @@ use yii\helpers\Url;
 
 ?>
 
-<?php if ($order->status == 'Full Payment') : ?>
+<?php if ($order->status == 'Full Payment' || $order->status == 'Paid') : ?>
 
     <?php
     $orderShipping = $order->getOrderShipping();

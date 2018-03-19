@@ -75,11 +75,11 @@ $dataProvider = new \yii\data\ActiveDataProvider([
 
     <div id="create-payment">
         <?php if (Yii::$app->user->can('admin')): ?>
-            <?= Html::button(Yii::t('order', 'Create Payment'), ['id' => 'btn-create-payment', 'class' => 'btn btn-primary'])
-            ?>
+            <?= Html::button(Yii::t('order', 'Create Payment'), ['id' => 'btn-create-payment', 'class' => 'btn btn-primary']) ?>
+
+            <div id="payment-form" style="display: none;">
+                <?php echo $this->render('payment_form') ?>
+            </div>
         <?php endif; ?>
-        <div id="payment-form" style="display: none;">
-            <?php echo $this->render('payment_form') ?>
-        </div>
     </div>
 </div>

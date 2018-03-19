@@ -7,7 +7,7 @@ use yii\helpers\Url;
 
 $orderPayments = $order->getOrderPayments();
 $dataProvider = new \yii\data\ActiveDataProvider([
-        'query' => $orderPayments,
+    'query' => $orderPayments,
     'sort' => ['defaultOrder' => ['payment_date' => SORT_DESC]],
 ]);
 ?>
@@ -38,7 +38,7 @@ $dataProvider = new \yii\data\ActiveDataProvider([
                         'buttons' => [
                             'update' => function ($url) {
                                 return Html::a('<i class="glyphicon glyphicon-pencil"></i>', $url, [
-                                        'id' => 'a-update-payment',
+                                    'id' => 'a-update-payment',
                                     'title' => Yii::t('app', 'Update'),
                                 ]);
                             },
@@ -73,13 +73,12 @@ $dataProvider = new \yii\data\ActiveDataProvider([
         <?php endif; ?>
     </div>
 
-    <div id="create-payment">
-        <?php if (Yii::$app->user->can('admin')): ?>
-            <?= Html::button(Yii::t('order', 'Create Payment'), ['id' => 'btn-create-payment', 'class' => 'btn btn-primary'])
-            ?>
-        <?php endif; ?>
-        <div id="payment-form" style="display: none;">
-            <?php echo $this->render('payment_form') ?>
+    <?php if (Yii::$app->user->can('admin')): ?>
+        <div id="create-payment">
+            <?= Html::button(Yii::t('order', 'Create Payment'), ['id' => 'btn-create-payment', 'class' => 'btn btn-primary']) ?>
+            <div id="payment-form" style="display: none;">
+                <?php echo $this->render('payment_form') ?>
+            </div>
         </div>
-    </div>
+    <?php endif; ?>
 </div>
