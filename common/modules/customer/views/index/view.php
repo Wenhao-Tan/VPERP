@@ -1,5 +1,5 @@
 <?php
-$this->title = Yii::t('customer', 'Customer Details') . ' - ' . $model->getFullName();
+$this->title = Yii::t('customer', 'Customer Details') . ' - ' . $model->getFullName($_GET['id']);
 ?>
 
 <?php
