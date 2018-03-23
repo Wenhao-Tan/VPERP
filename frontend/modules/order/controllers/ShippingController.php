@@ -53,7 +53,7 @@ class ShippingController extends Controller
 
             $model->save();
 
-            $this->redirect(['index/detail', 'orderId' => $model->order_id]);
+            $this->redirect(['index/view', 'orderId' => $model->order_id]);
         }
     }
 
@@ -65,7 +65,7 @@ class ShippingController extends Controller
         if ($orderShippingModel->load(Yii::$app->request->post()) && $orderShippingModel->validate()) {
             $orderShippingModel->updateShipping($shippingId);
 
-            $this->redirect(['index/detail', 'orderId' => $_GET['orderId']]);
+            $this->redirect(['index/view', 'orderId' => $_GET['orderId']]);
         }
 
         return $this->renderAjax('update', [
