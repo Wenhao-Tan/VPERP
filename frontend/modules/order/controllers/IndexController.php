@@ -149,9 +149,9 @@ class IndexController extends Controller
                     $orderItem->save();
                 }
 
-                $this->redirect(['index']);
+                return $this->redirect(['index']);
             } else {
-                $this->redirect(['create']);
+                return $this->redirect(['create']);
             }
         }
     }
@@ -195,7 +195,7 @@ class IndexController extends Controller
         if (file_exists($file)) {
             Yii::$app->response->sendFile($file);
         } else {
-            $this->redirect(['create']);
+            return $this->redirect(['create']);
         }
     }
 
