@@ -149,11 +149,11 @@ class IndexController extends Controller
                     $orderItem->save();
                 }
 
-                return $this->redirect(['index']);
-            } else {
-                return $this->redirect(['create']);
+                return $this->redirect(['index/index']);
             }
         }
+
+        return $this->redirect(['index/create']);
     }
 
 

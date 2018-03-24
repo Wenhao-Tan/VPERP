@@ -52,13 +52,26 @@ $this->title = Yii::t('order', 'Create Items for Order #') . $model->order_id;
             ],
             'attributes' => [
                 'payment_method' => [],
-                'currency' => [],
-                'order_amount' => [],
-                'shipping_charges' => [],
+                'reference_id' => [],
                 'commission_rate' => [
                     'type' => Form::INPUT_HIDDEN,
                 ],
             ],
+        ]);
+
+        echo Form::widget([
+                'model' => $model,
+            'form' => $form,
+            'columns' => 4,
+            'attributeDefaults' => [
+                    'type' => Form::INPUT_HIDDEN_STATIC,
+            ],
+            'attributes' => [
+                'currency' => [],
+                'order_amount' => [],
+                'shipping_charges' => [],
+            ],
+
         ]);
 
         echo Form::widget([
