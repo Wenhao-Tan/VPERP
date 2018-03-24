@@ -18,23 +18,17 @@ class OrderPayment extends ActiveRecord
     public function rules()
     {
         return [
-            [
-                ['payment_processor', 'bank_code', 'bank_account', 'remark', 'full_payment'], 'safe'
-            ],
+            [['payment_processor', 'bank_code', 'bank_account', 'remark', 'full_payment'], 'safe'],
             ['type', 'required', 'when' => function ($model) {
                 return $model->full_payment != 0;
             }, 'whenClient' => "function (attribute, value) {
                 return $('input[name=\"OrderPayment[full_payment]\"]:checked').val() != 1;
             }"],
             [['payment_id', 'order_id', 'payment_date', 'currency', 'amount', 'payment_method'], 'required',],
-            [
-                ['payment_id', 'order_id', 'payment_date', 'currency', 'amount',
+            [['payment_id', 'order_id', 'payment_date', 'currency', 'amount',
                     'payment_method', 'payment_processor',
-                    'bank_code', 'bank_account', 'remark'], 'filter', 'filter'=>'trim'
-            ],
-            [
-                ['amount'], 'double',
-            ]
+                    'bank_code', 'bank_account', 'remark'], 'filter', 'filter'=>'trim'],
+            [['amount'], 'double',]
         ];
     }
 

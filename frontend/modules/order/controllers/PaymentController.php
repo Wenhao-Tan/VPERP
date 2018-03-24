@@ -53,12 +53,19 @@ class PaymentController extends Controller
         $model = new OrderPayment();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->full_payment) {
+            if (!$model->type) {
+                $model->type = '';
+            }
+
+            if ($model->type == 'Balance' && $model->full_payment) {
+                $model->type = 'Balance, Full Payment';
+            } else if ($model->full_payment) {
                 $model->type = 'Full Payment';
             }
+
             $model->save();
 
-            $this->redirect(['index/view', 'orderId' => $model->order_id]);
+            return $this->redirect(['index/view', 'orderId' => $model->order_id]);
         }
     }
 
