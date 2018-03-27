@@ -52,21 +52,11 @@ class PaymentController extends Controller
     {
         $model = new OrderPayment();
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if (!$model->type) {
-                $model->type = '';
-            }
-
-            if ($model->type == 'Balance' && $model->full_payment) {
-                $model->type = 'Balance, Full Payment';
-            } else if ($model->full_payment) {
-                $model->type = 'Full Payment';
-            }
-
-            $model->save();
-
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index/view', 'orderId' => $model->order_id]);
         }
+
+        return $this->goBack();
     }
 
     public function actionUpdate($paymentId)
@@ -74,7 +64,6 @@ class PaymentController extends Controller
         $model = OrderPayment::findOne(['payment_id' => $paymentId]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
             $this->redirect(['index/detail', 'orderId' => $model->order_id]);
         }
 

@@ -19,12 +19,7 @@ class OrderPayment extends ActiveRecord
     {
         return [
             [['payment_processor', 'bank_code', 'bank_account', 'remark', 'full_payment'], 'safe'],
-            ['type', 'required', 'when' => function ($model) {
-                return $model->full_payment != 0;
-            }, 'whenClient' => "function (attribute, value) {
-                return $('input[name=\"OrderPayment[full_payment]\"]:checked').val() != 1;
-            }"],
-            [['payment_id', 'order_id', 'payment_date', 'currency', 'amount', 'payment_method'], 'required',],
+            [['payment_id', 'order_id', 'payment_date', 'currency', 'amount', 'payment_method', 'type'], 'required',],
             [['payment_id', 'order_id', 'payment_date', 'currency', 'amount',
                     'payment_method', 'payment_processor',
                     'bank_code', 'bank_account', 'remark'], 'filter', 'filter'=>'trim'],
@@ -44,20 +39,15 @@ class OrderPayment extends ActiveRecord
         if ($insert) {
             $order = Order::findOne(['order_id' => $this->order_id]);
 
-            $order->status = $this->type;
+            $order->status = '';
 
-            if ($this->type == 'Deposit') {
-                $order->status = 'Deposit Paid';
-            } elseif ($this->type == 'Balance') {
-                $order->status = 'Partial Payment';
-            }
-
-            if ($this->full_payment) {
+            if ($this->type == 'Balance') {
                 $order->status = 'Full Payment';
+            } else {
+                $order->status = $this->type;
             }
 
             $order->update(false);
         }
-
     }
 }

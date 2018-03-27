@@ -51,15 +51,10 @@ $orderPayment->order_id = $_GET['orderId'];
     </div>
 
     <div class="row">
-        <?= $form->field($orderPayment, 'type', ['options' => ['class' => 'col-sm-3']])
+        <?= $form->field($orderPayment, 'type', ['options' => ['class' => 'col-sm-6']])
             ->inline(true)
-            ->radioList(['Deposit' => 'Deposit', 'Balance' => 'Balance'], ['unselect' => null])
+            ->radioList(['Deposit' => 'Deposit', 'Partial Payment' => 'Partial Payment', 'Balance' => 'Balance', 'Full Payment' => 'Full Payment'], ['unselect' => null])
             ->label(false) ?>
-    </div>
-    <div class="row">
-        <?= $form->field($orderPayment, 'full_payment', ['options' => ['class' => 'col-sm-3']])
-            ->inline(true)
-            ->checkbox(['label' => 'Full Payment']) ?>
     </div>
 
 <?php if ($orderPayment->isNewRecord) : ?>
