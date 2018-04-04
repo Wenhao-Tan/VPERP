@@ -88,6 +88,19 @@ echo DetailView::widget([
             ],
         ],
         [
+            'columns' => [
+                [
+                    'attribute' => 'reference_id',
+                    'valueColOptions' => ['style' => 'width:30%'],
+                ],
+                [
+                    'label' => ' ',
+                    'value' => ' ',
+                    'valueColOptions' => ['style' => 'width:30%'],
+                ],
+            ],
+        ],
+        [
             'group' => true,
             'label' => Yii::t('order', 'Shipping Info'),
             'rowOptions' => ['class' => 'info']

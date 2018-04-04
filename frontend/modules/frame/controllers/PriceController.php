@@ -87,7 +87,7 @@ class PriceController extends Controller
         $model = $this->findModel($reference);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['default/index', 'PriceSearch[reference]' => $model->reference], 301);
+            return $this->redirect(['price/index', 'PriceSearch[reference]' => $model->reference], 301);
         } else {
             return $this->renderAjax('update', [
                 'model' => $model,

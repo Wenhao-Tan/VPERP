@@ -139,7 +139,7 @@ $prescription['prismDirection'] = [
     <hr/>
 
     <div class="row">
-        <div class="col-xs-8">
+        <div class="col-xs-9">
             <table class="table">
                 <thead>
                 <tr>
