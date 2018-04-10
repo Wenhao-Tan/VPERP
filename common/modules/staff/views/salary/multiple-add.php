@@ -52,7 +52,8 @@ $month = '2017-04-01';
         $generalInfo = new StaffGeneralInfo();
         $fullName = $generalInfo->getFullName($staffId);
 
-        $working_days = cal_days_in_month(CAL_GREGORIAN, date('m', strtotime($month)), date('Y', strtotime($month)));
+        // $working_days = cal_days_in_month(CAL_GREGORIAN, date('m', strtotime($month)), date('Y', strtotime($month)));
+        $working_days = '';
         $salary->working_days = $working_days;
 
         $jobInfo = new StaffJobInfo();
@@ -108,7 +109,7 @@ $orders = \common\modules\order\models\Order::find()
     ->where([
         'sales_representative' => '1001',
         'status' => 'Shipped',
-        'DATE_FORMAT(latest_shipping_date,"%Y-%m")' => '2018-02'])
+        'DATE_FORMAT(latest_shipping_date,"%Y-%m")' => '2018-03'])
     ->orderBy('`order`.`order_date` DESC')
     ->asArray()
     ->all();
@@ -116,7 +117,7 @@ $orders = \common\modules\order\models\Order::find()
 // Calculate Commission
 $commission = 0;
 foreach ($orders as $order) {
-    echo $order['order_id'] . ' ';
+    echo $order['order_id'] . ' - ';
 
     if (!$order['commission_rate']) {
         $rate = 5 / 100;
@@ -138,14 +139,13 @@ foreach ($orders as $order) {
         }
         $subTotal += $amount;
 
-        echo $orderPayment['amount'] . ' ';
+        echo $orderPayment['amount'] . ' - ' . '(' . $amount * $rate . ')';
     }
 
     echo '<br />';
+
     $commission += $subTotal * $rate;
 }
-
-return round($commission,2);
-
+echo $commission;
 
 ?>
