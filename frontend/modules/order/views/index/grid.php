@@ -136,7 +136,7 @@ echo GridView::widget([
     'rowOptions' => function ($model, $index, $widget, $grid) {
         if ($model->status == 'Unpaid' || $model->status == 'Created') {
             return ['class' => 'danger'];
-        } else if ($model->status == 'Deposit Paid' || $model->status == 'Partial Payment') {
+        } else if ($model->status == 'Deposit' || $model->status == 'Partial Payment') {
             return ['class' => 'warning'];
         } else if ($model->status == 'Paid' || $model->status == 'Full Payment') {
             return ['class' => 'success'];
